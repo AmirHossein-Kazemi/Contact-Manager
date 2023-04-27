@@ -3,8 +3,9 @@ import { toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import { useNavigate, useParams } from "react-router-dom";
 import getOneContact from "../../services/getOneContact";
+import updateContact from "../../services/updateContact";
 
-const EditContact = ({ addContactHandler }) => {
+const EditContact = () => {
   const [contact, setContact] = useState({ name: "", email: "" });
 
   const navigation = useNavigate();
@@ -15,7 +16,7 @@ const EditContact = ({ addContactHandler }) => {
     console.log(contact);
   };
 
-  const submitForm = (e) => {
+  const submitForm = async (e) => {
     if (!contact.name || !contact.email) {
       e.preventDefault();
       toast.warning("please fill the Name & Email");
@@ -23,9 +24,10 @@ const EditContact = ({ addContactHandler }) => {
     }
     toast.success("Contact Added");
     e.preventDefault();
-    addContactHandler(contact);
-    setContact({ name: "", email: "" });
-    navigation("/");
+    try {
+      await updateContact(contact, params.id);
+      navigation("/");
+    } catch (error) {}
   };
 
   useEffect(() => {
@@ -62,7 +64,7 @@ const EditContact = ({ addContactHandler }) => {
         />
       </div>
       <button className="btn" type="submit">
-        Edit Contact
+        Update Contact
       </button>
     </form>
   );
