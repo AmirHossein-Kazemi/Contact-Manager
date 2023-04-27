@@ -1,0 +1,33 @@
+.addContact {
+  width: 60%;
+  height: 300px;
+  margin: auto;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  justify-content: space-evenly;
+  color: #444;
+}
+
+.addContact input {
+  display: block;
+  width: 600px;
+  padding: 3px 5px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  outline: none;
+}
+
+.addContact input:focus {
+  border: 2px solid rgb(57, 57, 219);
+}
+
+.btn {
+  cursor: pointer;
+  outline: none;
+  padding:5px 8px;
+  color: #fff;
+  background-color: rgb(57, 57, 219);
+  border: 1px solid rgb(57, 57, 219);
+  border-radius: 5px;
+}
